@@ -1,0 +1,6 @@
+# dependencies
+/node_modules
+
+#JWT keys
+.key
+.key.pub
