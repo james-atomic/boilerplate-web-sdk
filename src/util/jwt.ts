@@ -4,9 +4,7 @@ import * as jose from 'jose'
 const getPrivateKey = async (): Promise<string> => {
     try {
         const response = await fetch("/jwtRS512.key");
-        const keyResult = await response.text();
-        console.log(keyResult);
-        return keyResult;
+        return await response.text();
     } catch (error) {
         console.error("There was an issue reading the private key.", error);
         throw error;
