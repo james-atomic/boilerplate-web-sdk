@@ -1,0 +1,13 @@
+.card_container_wrapper{
+    display: flex;
+    height: 100%;
+
+    /*Transform to account for the width of single-card being double the card width
+    due to actions such as 'Remind me' and 'Dismiss'*/
+    transform: translateX(25%);
+}
+
+.atomic-sdk-frame {
+    border: 1px solid red;
+    height: 100%;
+}
