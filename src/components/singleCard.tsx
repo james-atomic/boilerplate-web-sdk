@@ -1,5 +1,5 @@
-import React, {useCallback, useRef} from "react";
-import AtomicSDK, {AACStreamContainer, SDKConfiguration} from "@atomic.io/action-cards-web-sdk";
+import React, { useCallback, useRef } from "react";
+import AtomicSDK, { AACStreamContainer, SDKConfiguration } from "@atomic.io/action-cards-web-sdk";
 
 interface SingleCardProps {
     containerId: string;
@@ -18,14 +18,6 @@ const SingleCard: React.FC<SingleCardProps> = ({ containerId }) => {
         if (element) {
             const config: SDKConfiguration = {
                 streamContainerId: containerId,
-                onRuntimeVariablesRequested: (cards, callback) : void => {
-                    cards.forEach(function(card) : void {
-                        // Replace the name of the runtime variable with your own set in the Workbench and modify what you want the value to be.
-                        card.runtimeVariables.set('test_variable', 'If you see this, then it works! Yay!');
-                    })
-
-                    callback(cards);
-                }
             };
 
             // Initiate the stream in 'element'

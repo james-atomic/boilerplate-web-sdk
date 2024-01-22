@@ -1,6 +1,6 @@
 # Atomic WebSDK Boilerplate App
 ## About
-This boilerplate app can be used as a template to quickly integrate the AtomicSDK into existing React apps.
+This boilerplate app can be used as a template to quickly integrate the AtomicSDK into existing React apps. The main branch is a demo using the single card view, however, there are demos using runtime variables and other views in the other branches.
 
 ## Getting Started
 After forking the repository, you must install the dependencies using:
@@ -27,11 +27,6 @@ Run the app using:
 ```bash
 npm  start
 ```
-
-### Runtime Variables
-To include runtime variables, navigate to `src/components/singleCard.tsx` and modify the name of the given variable in `SDKConfiguration` to match what is configured in your Workbench and the value to equal what you would like displayed. 
-
-If you do not want to include a runtime variable, you can remove the `onRunitimeVariablesRequested` parameter.
 
 ## Troubleshooting
 If you are not seeing any cards displayed, ensure the stream you sent your card to is linked to the stream container ID configured in the app.
