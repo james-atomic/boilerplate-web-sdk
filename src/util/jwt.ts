@@ -1,4 +1,4 @@
-import * as jose from 'jose'
+import { SignJWT, KeyLike, importPKCS8 } from 'jose';
 
 // Read and return the private key from its generated .key file
 const getPrivateKey = async (): Promise<string> => {
@@ -13,14 +13,14 @@ const getPrivateKey = async (): Promise<string> => {
 
 const generateToken = async (): Promise<string> => {
     const alg : string = 'RS512'; // JWT signing algorithm
-    const id : string = '36566235-6633-58d4-b3f8-7b8dcb1ec6b6'; // User's unique identifier. Do not include sensitive information - it is encoded but not encrypted.
+    const id : string = ''; // User's unique identifier. Do not include sensitive information - it is encoded but not encrypted.
 
     // Read private key and convert to KeyLike format for signing.
     const privateKeyString : string = await getPrivateKey();
-    const privateKey : jose.KeyLike = await jose.importPKCS8(privateKeyString, alg);
+    const privateKey : KeyLike = await importPKCS8(privateKeyString, alg);
 
     // Return signed json web token to send to AtomicSDK for authentication
-    return await new jose.SignJWT({sub: id})
+    return await new SignJWT({sub: id})
         .setProtectedHeader({alg})
         .setIssuedAt()
         .setExpirationTime('7d')
