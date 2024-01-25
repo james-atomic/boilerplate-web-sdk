@@ -1,44 +1,74 @@
 import React from "react";
-import { configAtomicSDK } from "./config/configAtomicSDK";
 import { SingleCard } from "./components/singleCard";
 import { Launcher } from "./components/launcher";
 import { VerticalStream } from "./components/verticalStream";
 import "./App.css";
-import { SDKConfiguration } from "@atomic.io/action-cards-web-sdk";
+import AtomicSDK, {
+  AuthToken,
+  SDKConfiguration,
+} from "@atomic.io/action-cards-web-sdk";
 
-const CONTAINER_ID = configAtomicSDK();
+declare global {
+  interface Window {
+    AtomicConfig: {
+      apiHost: string;
+      streamContainerId: string;
+      apiKey: string;
+      environmentId: string;
+      jwt: string;
+    };
+  }
+}
+const { apiHost, streamContainerId, apiKey, environmentId, jwt } =
+  window.AtomicConfig;
+
+AtomicSDK.login(
+  apiHost,
+  apiKey,
+  environmentId,
+  async (): Promise<AuthToken> => {
+    return Promise.resolve(jwt);
+  }
+);
+AtomicSDK.enableDebugMode(3);
 
 const App = () => {
-    // Configure the containers
-    const config: SDKConfiguration = {
-        streamContainerId: CONTAINER_ID,
-        onRuntimeVariablesRequested: (cards, callback) : void => {
-            cards.forEach(function(card) : void {
-                // Replace the name of the runtime variable with your own set in the Workbench and modify what you want the value to be.
-                card.runtimeVariables.set('test_variable', 'If you see this, then it works! Yay!');
-            })
+  // Configure the containers
+  const config: SDKConfiguration = {
+    streamContainerId,
+    // See the WebSDK documentation for more information on the implementation of this function https://documentation.atomic.io/sdks/web#runtime-variables
+    onRuntimeVariablesRequested: (cards, callback): void => {
+      cards.forEach(function (card): void {
+        // Replace the name of the runtime variable with your own set in the Workbench and modify what you want the value to be.
+        card.runtimeVariables.set(
+          "test_variable",
+          "If you see this, then it works! Yay!"
+        );
+      });
 
-            callback(cards);
-        },
-        // Customisation of the containers' UI. Other options can be found in the WebSDK documentation
-        enabledUiElements: {
-            launcherButton: {
-                disabled: false,
-                backgroundColor: '#43b611'
-            }
-        },
-        customStrings: {
-            cardListTitle: "Custom List Title"
-        }
-    };
+      // call the supplied callback with your modified cards
+      callback(cards);
+    },
+    // Customisation of the containers' UI. Other options can be found in the WebSDK documentation https://documentation.atomic.io/sdks/web#style-and-presentation
+    enabledUiElements: {
+      launcherButton: {
+        disabled: false,
+        backgroundColor: "#43b611",
+      },
+    },
+    // See the WebSDK documentation on available custom strings https://documentation.atomic.io/sdks/web#custom-strings
+    customStrings: {
+      cardListTitle: "Custom List Title",
+    },
+  };
 
-    return (
-        <>
-            <Launcher config={ config }/>
-            <VerticalStream config={ config }/>
-            <SingleCard config={ config }/>
-        </>
-    );
+  return (
+    <>
+      <Launcher config={config} />
+      <VerticalStream config={config} />
+      <SingleCard config={config} />
+    </>
+  );
 };
 
 export default App;
