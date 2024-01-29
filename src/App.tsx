@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { SingleCard } from "./components/singleCard";
 import { Launcher } from "./components/launcher";
 import { VerticalStream } from "./components/verticalStream";
+import { Button } from "./components/button";
 import "./App.css";
 import AtomicSDK, {
   AuthToken,
   SDKConfiguration,
 } from "@atomic.io/action-cards-web-sdk";
+import {Colours} from "./Colours";
 
 declare global {
   interface Window {
@@ -33,6 +35,16 @@ AtomicSDK.login(
 AtomicSDK.enableDebugMode(3);
 
 const App = () => {
+  const [isVisible, setIsVisible] = useState({
+    id: 'single',
+  })
+
+  const selectView = (e) => {
+    setIsVisible({
+      id: e.target.id,
+    })
+  }
+
   // Configure the containers
   const config: SDKConfiguration = {
     streamContainerId,
@@ -53,20 +65,36 @@ const App = () => {
     enabledUiElements: {
       launcherButton: {
         disabled: false,
-        backgroundColor: "#43b611",
+        backgroundColor: Colours.hotPink,
       },
     },
     // See the WebSDK documentation on available custom strings https://documentation.atomic.io/sdks/web#custom-strings
     customStrings: {
       cardListTitle: "Custom List Title",
-    },
+    }
   };
 
   return (
     <>
-      <Launcher config={config} />
-      <VerticalStream config={config} />
-      <SingleCard config={config} />
+      <div className="header">
+        <h1>WebSDK React Boilerplate App</h1>
+      </div>
+        <div className="content">
+          <VerticalStream config={config} visible={isVisible.id === 'stream'}/>
+          <SingleCard config={config} visible={isVisible.id === 'single'}/>
+          <Launcher config={config} visible={isVisible.id === 'launcher'}/>
+        </div>
+      <div className="container_selector">
+        <Button id={'single'} clicked={(e) => {
+          selectView(e)
+        }}/>
+        <Button id={'stream'} clicked={(e) => {
+          selectView(e)
+        }}/>
+        <Button id={'launcher'} clicked={(e) => {
+          selectView(e)
+        }}/>
+      </div>
     </>
   );
 };
