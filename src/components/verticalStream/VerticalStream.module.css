@@ -1,13 +1,40 @@
 .card_container_wrapper{
     display: flex;
     height: 100%;
-
-    /*Transform to account for the width of single-card being double the card width
-    due to actions such as 'Remind me' and 'Dismiss'*/
-    transform: translateX(25%);
 }
 
 .atomic-sdk-frame {
-    border: 1px solid red;
     height: 100%;
+}
+
+.stream_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.info_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    padding: 0 10vw;
+}
+
+.title {
+    font-weight: 700;
+    font-size: min(5vw, 4vh);
+    color: #1E6EFA;
+    margin-bottom: 2vw;
+}
+
+.title {
+    color: #FF3C5A;
+    margin-bottom: 2vw;
+}
+
+.none {
+    display: none;
 }
