@@ -4,45 +4,53 @@
 }
 
 #root {
-
     display: flex;
     flex-direction: column;
 }
 
 h1 {
-    font-size: min(5vw, 3.5vh);
+    font-size: min(4.5vh, 5vw);
     color: white;
 }
 
 p {
+    font-size: min(2vh, 4vw);
     line-height: 1.5;
 }
 
-
 a {
-    color: #1E6EFA;
     font-weight: 700;
+    color: #1E6EFA;
     text-decoration: none;
 }
 
 .header {
+    position: fixed;
+    top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 10vh;
     background: #00143C;
-    height: 10vh;}
-
-.content {
-    height: 75vh;
-    width: 100vw;
 }
 
-.container_selector {
-    background: #00143C;
-    height: 15vh;
+.content {
+    position: fixed;
+    top: 10vh;
+    bottom: 15vh;
+    overflow: scroll;
+}
+
+.button_container {
+    position: fixed;
+    bottom: 0;
     display: flex;
+    width: 100%;
+    height: 15vh;
     justify-content: center;
     align-items: center;
+    background: #00143C;
 }
 
 .none {

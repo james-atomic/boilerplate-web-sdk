@@ -3,12 +3,12 @@ import { SingleCard } from "./components/singleCard";
 import { Launcher } from "./components/launcher";
 import { VerticalStream } from "./components/verticalStream";
 import { Button } from "./components/button";
+import { Colours } from "./Colours";
 import "./App.css";
 import AtomicSDK, {
   AuthToken,
   SDKConfiguration,
 } from "@atomic.io/action-cards-web-sdk";
-import {Colours} from "./Colours";
 
 declare global {
   interface Window {
@@ -58,7 +58,7 @@ const App = () => {
         );
       });
 
-      // call the supplied callback with your modified cards
+      // Call the supplied callback with your modified cards
       callback(cards);
     },
     // Customisation of the containers' UI. Other options can be found in the WebSDK documentation https://documentation.atomic.io/sdks/web#style-and-presentation
@@ -68,7 +68,7 @@ const App = () => {
         backgroundColor: Colours.hotPink,
       },
     },
-    // See the WebSDK documentation on available custom strings https://documentation.atomic.io/sdks/web#custom-strings
+    // See the WebSDK documentation for available custom strings https://documentation.atomic.io/sdks/web#custom-strings
     customStrings: {
       cardListTitle: "Custom List Title",
     }
@@ -84,7 +84,7 @@ const App = () => {
           <SingleCard config={config} visible={isVisible.id === 'single'}/>
           <Launcher config={config} visible={isVisible.id === 'launcher'}/>
         </div>
-      <div className="container_selector">
+      <div className="button_container">
         <Button id={'single'} clicked={(e) => {
           selectView(e)
         }}/>
