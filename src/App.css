@@ -52,18 +52,3 @@ a {
     align-items: center;
     background: #00143C;
 }
-
-.none {
-    display: none;
-}
-
-/*Stying for the launcher button and container*/
-.atomic-sdk-launcher-wrapper {
-    bottom: 20vh !important;
-    right: 4vh !important;
-}
-
-iframe.atomic-sdk-frame.launcher {
-    top: 8vh !important;
-    height: 75vh !important;
-}
