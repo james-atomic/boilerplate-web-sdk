@@ -28,6 +28,13 @@ Run the app using:
 npm  start
 ```
 
+### Runtime Variables
+Runtime variables allow for more personalised messages in your cards and are resolved at runtime rather than when the card is created. After following the setup guide in the main branch, you can configure your runtime variables.
+
+Navigate to `src/components/singleCard.tsx` and modify the name of the given variable in `SDKConfiguration` to match what is configured in your Workbench and the value to equal what you would like displayed.
+
+If you do not want to include a runtime variable, you can remove the `onRunitimeVariablesRequested` parameter.
+
 ## Troubleshooting
 If you are not seeing any cards displayed, ensure the stream you sent your card to is linked to the stream container ID configured in the app.
 
