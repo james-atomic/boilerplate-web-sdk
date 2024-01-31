@@ -1,6 +1,6 @@
 # Atomic WebSDK Boilerplate App
 ## About
-This boilerplate app can be used as a template to quickly integrate the AtomicSDK into existing React apps. The main branch is a demo using the single card view, however, there are demos using runtime variables and other views in the other branches.
+This boilerplate app can be used as a template to quickly integrate the AtomicSDK into existing React apps. It gives examples of three different ways to display your streams - the launcher, vertical standalone container, and a single card view. It also shows how to customise and style your stream containers, and add additional configuration like using runtime variables.
 
 ## Getting Started
 After forking the repository, you must install the dependencies using:
@@ -9,24 +9,29 @@ npm install
 ```
 
 ### Authentication
-This app uses JWT for authentication to communicate with the Atomic Platform. To do this, you must generate a private/public key pair and store them in the `public` directory. They must use PKCS8 encoding.
+This app uses JWT for authentication to communicate with the Atomic Platform. Run the following command to generate a public/private key pair for authentication:
 
-Navigate to the `public` directory and run the following commands one-by-one in your terminal:
 ```bash
-ssh-keygen -t rsa -P "" -b 4096 -E SHA512 -m PKCS8 -f jwtRS512.key
-ssh-keygen -e -m PKCS8 -f jwtRS512.key > jwtRS512.key.pub
+npm generate-keys
 ```
-Open the `jwtRS512.key.pub` file and copy the generated public key. This key can be used to create a new API key in the Workbench.
+The generated keys will be stored in the `src/keys` directory. Once this is done, open the `jwtRS512.key.pub` file and copy the generated public key. This key can be used to create a new API key in the Workbench.
 
-You can read about this more in depth at [SDK Authentication](https://documentation.atomic.io/sdks/auth-SDK), however, keep in mind this documentation generates PEM format keys rather than the PKCS8 required for this app.
+You can read about this more in depth at [SDK Authentication](https://documentation.atomic.io/sdks/auth-SDK).
 
 ### Configuration
-You will also need to add your own values to the configuration constants found in `src/config/configAtomicSDK.ts`. These can be retrieved from the Atomic Workbench. You will also need to include a user ID in `src/util/jwt.ts` to target a specific user for authentication.
+You will also need to add your own values to the configuration constants found in `src/config/configAtomicSDK.ts`. These can be retrieved from the Atomic Workbench.
 
 Run the app using:
 ```bash
 npm  start
 ```
+
+### Runtime Variables
+Runtime variables allow for more personalised messages in your cards and are resolved at runtime rather than when the card is created. After following the setup guide in the main branch, you can configure your runtime variables.
+
+Navigate to `src/App.tsx` and modify the name of the given runtime variable in `SDKConfiguration` to match what is configured in your Workbench and the value to equal what you would like displayed.
+
+If you do not want to include a runtime variable, you can remove the `onRunitimeVariablesRequested` parameter.
 
 ## Troubleshooting
 If you are not seeing any cards displayed, ensure the stream you sent your card to is linked to the stream container ID configured in the app.
