@@ -1,0 +1,10 @@
+.button {
+    border-radius: 5px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    font-size: max(1.3vw, 1.5vh);
+    padding: min(2vh, 2vw) min(2.2vh, 3.2vw);
+    margin: 3vw;
+}
