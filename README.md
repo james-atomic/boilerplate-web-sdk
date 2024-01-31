@@ -2,6 +2,8 @@
 ## About
 This boilerplate app can be used as a template to quickly integrate the AtomicSDK into existing React apps. It gives examples of three different ways to display your streams - the launcher, vertical standalone container, and a single card view. It also shows how to customise and style your stream containers, and add additional configuration like using runtime variables.
 
+<img width="1728" alt="demo" src="https://github.com/atomic-app/boilerplate-web-sdk/assets/83641601/6d8472f2-6ac1-43a1-904a-91b1200b5444">
+
 ## Getting Started
 After forking the repository, you must install the dependencies using:
 ```bash
@@ -20,6 +22,8 @@ You can read about this more in depth at [SDK Authentication](https://documentat
 
 ### Configuration
 You will also need to add your own values to the configuration constants found in `src/config/configAtomicSDK.ts`. These can be retrieved from the Atomic Workbench.
+
+<img width="620" alt="config-values" src="https://github.com/atomic-app/boilerplate-web-sdk/assets/83641601/117800e5-fc55-483e-8fa4-542edb9d8284">
 
 Run the app using:
 ```bash
