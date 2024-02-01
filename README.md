@@ -2,6 +2,8 @@
 ## About
 This boilerplate app can be used as a template to quickly integrate the AtomicSDK into existing React apps. It gives examples of three different ways to display your streams - the launcher, vertical standalone container, and a single card view. It also shows how to customise and style your stream containers, and add additional configuration like using runtime variables.
 
+In this demo, each view is linked to the same stream so they will all display the same cards. For an example of how to render multiple containers with independent streams, please see the `multiple-containers` branch.
+
 <img width="1728" alt="demo" src="https://github.com/atomic-app/boilerplate-web-sdk/assets/83641601/6d8472f2-6ac1-43a1-904a-91b1200b5444">
 
 ## Getting Started
