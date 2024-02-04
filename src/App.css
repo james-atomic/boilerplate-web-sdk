@@ -39,7 +39,7 @@ a {
     position: fixed;
     top: 10vh;
     bottom: 15vh;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .button_container {

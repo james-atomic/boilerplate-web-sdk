@@ -7,7 +7,6 @@ import styles from "./SingleCard.module.css";
 
 interface SingleCardProps {
   config: SDKConfiguration;
-  visible: boolean;
 }
 
 export const SingleCard = (props: SingleCardProps) => {
@@ -27,14 +26,26 @@ export const SingleCard = (props: SingleCardProps) => {
   }, []);
 
   return (
-      <div className={props.visible ? styles.single_wrapper : styles.none}>
-        <div ref={initAtomicEmbed} className={props.visible ? styles.card_container_wrapper : styles.none}/>
-        <div className={styles.info_wrapper}>
-          <div className={styles.title}>Single Card View</div>
-          <p>The single card view embeds a single card without any surrounding UI into a specified element. It will display the most recently sent card with the highest priority.
-            The dimensions of the embedded iframe will adjust to fit the size of whichever card is currently being displayed.
-            <br/><br/>You can read more about it here in the <a href="https://documentation.atomic.io/sdks/web#displaying-a-single-card" target="_blank">single card documentation.</a></p>
-        </div>
+    <div className={styles.single_wrapper}>
+      <div ref={initAtomicEmbed} className={styles.card_container_wrapper} />
+      <div className={styles.info_wrapper}>
+        <div className={styles.title}>Single Card View</div>
+        <p>
+          The single card view embeds a single card without any surrounding UI
+          into a specified element. It will display the most recently sent card
+          with the highest priority. The dimensions of the embedded iframe will
+          adjust to fit the size of whichever card is currently being displayed.
+          <br />
+          <br />
+          You can read more about it here in the{" "}
+          <a
+            href="https://documentation.atomic.io/sdks/web#displaying-a-single-card"
+            target="_blank"
+          >
+            single card documentation.
+          </a>
+        </p>
       </div>
+    </div>
   );
 };

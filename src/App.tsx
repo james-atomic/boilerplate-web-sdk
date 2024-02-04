@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import { SingleCard } from "./components/singleCard";
 import { Launcher } from "./components/launcher";
 import { VerticalStream } from "./components/verticalStream";
@@ -24,26 +24,20 @@ declare global {
 const { apiHost, streamContainerId, apiKey, environmentId, jwt } =
   window.AtomicConfig;
 
-AtomicSDK.login(
-  apiHost,
-  apiKey,
-  environmentId,
-  async (): Promise<AuthToken> => {
-    return Promise.resolve(jwt);
-  }
-);
+const authTokenProvider = async (): Promise<AuthToken> => {
+  return Promise.resolve(jwt);
+};
+AtomicSDK.login(apiHost, apiKey, environmentId, authTokenProvider);
 AtomicSDK.enableDebugMode(3);
 
-const App = () => {
-  const [isVisible, setIsVisible] = useState({
-    id: 'single',
-  })
+export enum Views {
+  SingleCard = "single",
+  VerticalStream = "stream",
+  Launcher = "launcher",
+}
 
-  const selectView = (e) => {
-    setIsVisible({
-      id: e.target.id,
-    })
-  }
+const App = () => {
+  const [view, setView] = useState(Views.SingleCard);
 
   // Configure the containers
   const config: SDKConfiguration = {
@@ -71,7 +65,7 @@ const App = () => {
     // See the WebSDK documentation for available custom strings https://documentation.atomic.io/sdks/web#custom-strings
     customStrings: {
       cardListTitle: "Custom List Title",
-    }
+    },
   };
 
   return (
@@ -79,21 +73,30 @@ const App = () => {
       <div className="header">
         <h1>WebSDK React Boilerplate App</h1>
       </div>
-        <div className="content">
-          <VerticalStream config={config} visible={isVisible.id === 'stream'}/>
-          <SingleCard config={config} visible={isVisible.id === 'single'}/>
-          <Launcher config={config} visible={isVisible.id === 'launcher'}/>
-        </div>
+      <div className="content">
+        {view === Views.SingleCard && <SingleCard config={config} />}
+        {view === Views.VerticalStream && <VerticalStream config={config} />}
+        {view === Views.Launcher && <Launcher config={config} />}
+      </div>
       <div className="button_container">
-        <Button id={'single'} clicked={(e) => {
-          selectView(e)
-        }}/>
-        <Button id={'stream'} clicked={(e) => {
-          selectView(e)
-        }}/>
-        <Button id={'launcher'} clicked={(e) => {
-          selectView(e)
-        }}/>
+        <Button
+          onClick={() => setView(Views.SingleCard)}
+          text={"Single Card"}
+          color={Colours.lightBlue}
+          backgroundColor={Colours.midBlue}
+        />
+        <Button
+          onClick={() => setView(Views.VerticalStream)}
+          text={"Vertical Stream"}
+          color={Colours.lighterPink}
+          backgroundColor={Colours.hotPink}
+        />
+        <Button
+          onClick={() => setView(Views.Launcher)}
+          text={"Launcher"}
+          color={Colours.hotPink}
+          backgroundColor={Colours.lightPink}
+        />
       </div>
     </>
   );

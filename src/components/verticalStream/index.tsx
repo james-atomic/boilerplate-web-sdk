@@ -6,7 +6,6 @@ import AtomicSDK, {
 import styles from "./VerticalStream.module.css";
 interface VerticalStreamProps {
   config: SDKConfiguration;
-  visible: boolean;
 }
 
 export const VerticalStream = (props: VerticalStreamProps) => {
@@ -26,14 +25,27 @@ export const VerticalStream = (props: VerticalStreamProps) => {
   }, []);
 
   return (
-      <div className={props.visible ? styles.stream_wrapper : styles.none}>
-        <div className={styles.info_wrapper}>
-          <div className={styles.title}>Vertical Stream View</div>
-          <p>The vertical stream view allows you to display your cards in a vertical flow with your most recently sent cards at the top. Similarly, there is also a horizontal stream presentation.
-          The standalone containers have various customisation parameters available such as changing the card list title or toast message configuration.
-            <br /><br />You can read more about it here in the <a href="https://documentation.atomic.io/sdks/web#displaying-a-vertical-stream-container" target="_blank">vertical stream container documentation.</a></p>
-        </div>
-        <div ref={initAtomicEmbed} className={styles.card_container_wrapper}/>
+    <div className={styles.stream_wrapper}>
+      <div className={styles.info_wrapper}>
+        <div className={styles.title}>Vertical Stream View</div>
+        <p>
+          The vertical stream view allows you to display your cards in a
+          vertical flow with your most recently sent cards at the top.
+          Similarly, there is also a horizontal stream presentation. The
+          standalone containers have various customisation parameters available
+          such as changing the card list title or toast message configuration.
+          <br />
+          <br />
+          You can read more about it here in the{" "}
+          <a
+            href="https://documentation.atomic.io/sdks/web#displaying-a-vertical-stream-container"
+            target="_blank"
+          >
+            vertical stream container documentation.
+          </a>
+        </p>
       </div>
+      <div ref={initAtomicEmbed} className={styles.card_container_wrapper} />
+    </div>
   );
 };

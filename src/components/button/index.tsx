@@ -1,31 +1,23 @@
-import styles from './Button.module.css';
-import { Colours } from '../../Colours';
+import React from "react";
+import styles from "./Button.module.css";
+
 interface ButtonProps {
-    id: string;
-    clicked: any;
+  onClick: () => void;
+  text: string;
+  color: string;
+  backgroundColor: string;
 }
-export const Button = (props) => {
-    let name;
-    let text;
-    let background;
-
-    if(props.id === 'stream'){
-        name = 'Vertical Stream'
-        text = Colours.lighterPink
-        background = Colours.hotPink
-    } else if (props.id === 'single') {
-        name = 'Single Card'
-        text = Colours.lightBlue
-        background = Colours.midBlue
-    } else {
-        name = 'Launcher'
-        text = Colours.hotPink
-        background = Colours.lightPink
-    }
-
-    return (
-        <button className={ styles.button } onClick={props.clicked} id={props.id} style={{background: background, color: text}}>
-            { name }
-        </button>
-    );
-};
+export const Button = ({
+  onClick,
+  text,
+  color,
+  backgroundColor,
+}: ButtonProps) => (
+  <button
+    className={styles.button}
+    onClick={onClick}
+    style={{ backgroundColor, color }}
+  >
+    {text}
+  </button>
+);
